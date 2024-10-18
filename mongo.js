@@ -18,22 +18,28 @@ mongoose.connect(url).then(() => {
 
   const Note = mongoose.model("Note", noteSchema);
 
-  const note = new Note({
-    content: process.argv[3],
-    important: process.argv[4] === "true" ? true : false,
-  });
+  //   const note = new Note({
+  //     content: process.argv[3],
+  //     important: process.argv[4] === "true" ? true : false,
+  //   });
 
-  if (process.argv.length === 3) {
-    Note.find({}).then((result) => {
-      result.forEach((note) => {
-        console.log(note);
-      });
-      mongoose.connection.close();
+  //   if (process.argv.length === 3) {
+  //     Note.find({}).then((result) => {
+  //       result.forEach((note) => {
+  //         console.log(note);
+  //       });
+  //       mongoose.connection.close();
+  //     });
+  //   } else if (process.argv.length === 5) {
+  //     note.save().then((result) => {
+  //       console.log("note saved!");
+  //       mongoose.connection.close();
+  //     });
+  //   }
+  Note.find({}).then((result) => {
+    result.forEach((note) => {
+      console.log(note);
     });
-  } else if (process.argv.length === 5) {
-    note.save().then((result) => {
-      console.log("note saved!");
-      mongoose.connection.close();
-    });
-  }
+    mongoose.connection.close();
+  });
 });
